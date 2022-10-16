@@ -38,19 +38,6 @@ class MusicBeatState extends FlxUIState
 	var trackedinputsUI:Array<FlxActionInput> = [];
 	var trackedinputsNOTES:Array<FlxActionInput> = [];
 
-	#if android
-	public function addVirtualPad(?DPad:FlxDPadMode, ?Action:FlxActionMode) {
-		_virtualpad = new FlxVirtualPad(DPad, Action);
-		_virtualpad.alpha = 0.75;
-		add(_virtualpad);
-		controls.setVirtualPadUI(_virtualpad, DPad, Action);
-		trackedinputsUI = controls.trackedinputsUI;
-		controls.trackedinputsUI = [];
-	}
-	#else
-	public function addVirtualPad(?DPad, ?Action)
-	#end
-		
 	public function addVirtualPad(DPad:FlxDPadMode, Action:FlxActionMode)
 	{
 		virtualPad = new FlxVirtualPad(DPad, Action);
@@ -95,26 +82,6 @@ class MusicBeatState extends FlxUIState
 		androidControls.cameras = [camControls];
 		androidControls.visible = false;
 		add(androidControls);
-		
-		if (PlayState.SONG.dodgeEnabled)
-                {
-                        _virtualpad = new FlxVirtualPad(NONE, A_B);
-		        _virtualpad.alpha = 0.75;
-                        _virtualpad.cameras = [camcontrol];
-                        _virtualpad.visible = false;
-		        add(_virtualpad);
-                }
-                else if (!PlayState.inhumanSong)
-                {
-                        _virtualpad = new FlxVirtualPad(NONE, B);
-		        _virtualpad.alpha = 0.75;
-                        _virtualpad.cameras = [camcontrol];
-                        _virtualpad.visible = false;
-		        add(_virtualpad);
-                }
-		#end
-	}
-	
 	}
 
 	public function removeAndroidControls()
@@ -136,7 +103,7 @@ class MusicBeatState extends FlxUIState
 			virtualPad.cameras = [camControls];
 		}
 	}
-	
+	#end
 
 	override function destroy()
 	{
