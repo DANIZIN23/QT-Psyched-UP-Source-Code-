@@ -131,7 +131,7 @@ class Character extends FlxSprite
 				//sparrow
 				//packer
 				//texture
-				#if MODS_ALLOWED
+				#if windows 
 				var modTxtToFind:String = Paths.modsTxt(json.image);
 				var txtToFind:String = Paths.getPath('images/' + json.image + '.txt', TEXT);
 				
